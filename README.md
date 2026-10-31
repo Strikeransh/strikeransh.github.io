@@ -1,24 +1,28 @@
-# Ashish Kumar — AWS Cloud Engineer Portfolio
+# Ashish Kumar — Portfolio site
 
-A responsive, static portfolio for GitHub Pages. It uses plain HTML, CSS, and JavaScript.
+This repository is structured for GitHub Pages with a simple selector homepage and two focused portfolios.
 
-## Files
-- `index.html` — page content and sections
-- `styles.css` — responsive dark navy / electric blue styling
-- `script.js` — mobile navigation and current year
-- `assets/favicon.svg` — site icon
+## Routes
+
+- `/` — portfolio selector
+- `/cloudops/` — CloudOps portfolio
+- `/devops/` — DevOps portfolio
+
+## Publish
+
+1. Copy the contents of this folder into the root of `Strikeransh/strikeransh.github.io`.
+2. Commit and push to the `main` branch.
+3. In GitHub, confirm Pages is configured to deploy from the `main` branch and repository root.
+4. Wait for the Pages deployment, then test all three URLs.
 
 ## Before publishing
-1. Search `index.html` for `YOUR-LINKEDIN` and replace it with your LinkedIn profile URL.
-2. Replace `YOUR-EMAIL@example.com` with the email address you want recruiters to use.
-3. Confirm role dates, titles, certifications, and project descriptions. Remove anything you cannot publicly disclose.
-4. Add verified certification credential links and any public project links you want to showcase.
 
-## Publish with GitHub Pages
-1. Open `https://github.com/Strikeransh/strikeransh.github.io`.
-2. Upload the contents of this folder to the repository root (not the outer folder itself).
-3. Commit the files to the `main` branch.
-4. In **Settings → Pages**, confirm the source is **Deploy from a branch**, branch `main`, folder `/ (root)`.
-5. Open `https://strikeransh.github.io/`. The first deployment can take a few minutes.
+- Confirm certification titles and years against the certificates (especially the OCI Foundations credential).
+- Review the CloudOps and DevOps skill labels for accuracy.
+- Remove customer names, account IDs, credentials, private IPs, internal hostnames, and other sensitive details from any future source-code repositories.
+- Add source-code URLs only after the sanitized repositories are public.
+- Confirm whether ECS/Fargate and other optional AWS services should be listed as hands-on before upgrading their skill labels.
 
-No build command or package installation is required.
+## Project architecture
+
+The DevOps page currently includes a high-level snapshot replication and retention workflow plus a centralized log collection/SIEM project summary. The code repositories are intentionally not linked until they are published.
