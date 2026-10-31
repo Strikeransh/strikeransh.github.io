@@ -2,511 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#08111f">
-  <meta name="description" content="Ashish Kumar — Cloud Engineer specializing in AWS, Azure, OCI, VMware, infrastructure automation, centralized logging, and disaster recovery.">
-  <title>Ashish Kumar | Cloud Engineer</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #08111f;
-      --bg-soft: #0d192a;
-      --panel: rgba(17, 31, 50, .78);
-      --panel-solid: #111f32;
-      --text: #edf4ff;
-      --muted: #9aabc2;
-      --blue: #55b8ff;
-      --cyan: #65e2e5;
-      --line: rgba(157, 190, 225, .16);
-      --shadow: 0 22px 65px rgba(0, 0, 0, .28);
-      --radius: 22px;
-      --max: 1120px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-    body {
-      margin: 0;
-      background:
-        radial-gradient(ellipse at 82% 8%, rgba(31, 116, 183, .18), transparent 34rem),
-        radial-gradient(ellipse at 8% 42%, rgba(23, 159, 171, .09), transparent 30rem),
-        var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    .wrap { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
-    .site-header {
-      position: sticky; top: 0; z-index: 20;
-      background: rgba(8, 17, 31, .82);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-    }
-    .nav {
-      min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
-    }
-    .brand { color: var(--blue); font-weight: 800; letter-spacing: -.04em; font-size: 1.12rem; }
-    .brand span { color: var(--text); }
-    .nav-links { display: flex; align-items: center; gap: 26px; }
-    .nav-links a { color: var(--muted); font-size: .88rem; transition: color .2s ease; }
-    .nav-links a:hover, .nav-links a:focus-visible { color: var(--blue); }
-    .nav-cta {
-      border: 1px solid rgba(85,184,255,.45); color: var(--blue) !important;
-      padding: 9px 15px; border-radius: 999px;
-    }
-    .menu-toggle {
-      display: none; border: 1px solid var(--line); color: var(--text);
-      background: var(--panel-solid); border-radius: 10px; padding: 8px 11px; cursor: pointer;
-    }
-    .hero { padding: 108px 0 92px; min-height: 590px; display: grid; align-items: center; }
-    .hero-grid { display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 58px; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px; color: var(--cyan);
-      font-size: .78rem; font-weight: 750; letter-spacing: .16em; text-transform: uppercase;
-    }
-    .eyebrow::before { content: ""; width: 25px; height: 1px; background: var(--cyan); }
-    h1 { font-size: clamp(3.1rem, 7vw, 5.8rem); line-height: .99; letter-spacing: -.065em; margin: 22px 0; }
-    h1 .accent, .accent { color: var(--blue); }
-    .hero-copy { color: var(--muted); max-width: 650px; font-size: clamp(1rem, 1.8vw, 1.15rem); }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-      padding: 12px 19px; border-radius: 999px; font-weight: 700; font-size: .92rem;
-      border: 1px solid transparent; transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { color: #041321; background: linear-gradient(110deg, var(--blue), var(--cyan)); }
-    .btn-secondary { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.025); }
-    .hero-card {
-      position: relative; padding: 28px; border: 1px solid var(--line); border-radius: 28px;
-      background: linear-gradient(145deg, rgba(20, 42, 67, .92), rgba(10, 22, 37, .88));
-      box-shadow: var(--shadow); overflow: hidden;
-    }
-    .hero-card::before {
-      content: ""; position: absolute; width: 210px; height: 210px; border-radius: 50%;
-      right: -85px; top: -105px; background: rgba(85,184,255,.14); filter: blur(2px);
-    }
-    .card-label { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .13em; }
-    .stat { font-size: 3.2rem; font-weight: 850; letter-spacing: -.07em; line-height: 1.1; margin: 12px 0 4px; }
-    .stat span { color: var(--blue); }
-    .hero-card p { color: var(--muted); margin: 0; font-size: .92rem; }
-    .mini-divider { height: 1px; background: var(--line); margin: 24px 0; }
-    .focus-list { display: grid; gap: 13px; }
-    .focus-item { display: flex; align-items: center; gap: 12px; color: #d9e6f7; font-size: .9rem; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 16px rgba(101,226,229,.65); }
-    section { padding: 78px 0; }
-    .section-head { max-width: 690px; margin-bottom: 34px; }
-    .section-kicker { color: var(--cyan); font-size: .75rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-    h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -.05em; margin: 10px 0 14px; }
-    .section-head p, .muted { color: var(--muted); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    .panel {
-      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 27px; box-shadow: 0 12px 38px rgba(0,0,0,.12);
-    }
-    .panel p { color: var(--muted); margin: 0; }
-    .quick-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .fact { padding: 17px; border-radius: 15px; background: rgba(255,255,255,.035); border: 1px solid var(--line); }
-    .fact strong { display: block; color: var(--blue); font-size: 1.35rem; letter-spacing: -.04em; }
-    .fact span { color: var(--muted); font-size: .82rem; }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
-    .skill-card h3, .experience-card h3, .project-card h3 { margin: 0 0 12px; font-size: 1.08rem; }
-    .skill-card p { margin: 0; color: var(--muted); font-size: .91rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
-    .tag {
-      border: 1px solid rgba(85,184,255,.2); color: #c8e7ff; background: rgba(85,184,255,.07);
-      border-radius: 999px; padding: 6px 10px; font-size: .77rem;
-    }
-    .timeline { display: grid; gap: 18px; }
-    .experience-card { position: relative; padding-left: 31px; }
-    .experience-card::before {
-      content: ""; position: absolute; left: 0; top: 7px; bottom: 7px; width: 2px;
-      background: linear-gradient(var(--blue), rgba(101,226,229,.15));
-    }
-    .experience-card::after {
-      content: ""; position: absolute; left: -5px; top: 7px; width: 12px; height: 12px;
-      border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 5px rgba(101,226,229,.1);
-    }
-    .role { color: var(--blue); font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
-    .company { color: var(--muted); font-size: .87rem; margin-bottom: 13px; }
-    .experience-card ul { margin: 0; padding-left: 19px; color: var(--muted); }
-    .experience-card li { padding: 3px 0; }
-    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 17px; }
-    .project-feature { grid-column: 1 / -1; }
-    .project-feature .project-intro { max-width: 900px; }
-    .project-feature h3 { font-size: 1.25rem; }
-    .project-details { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; margin-top: 22px; }
-    .project-subhead { color: var(--text); font-size: .86rem; font-weight: 800; margin: 0 0 11px; }
-    .workflow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .workflow-step { position: relative; min-height: 118px; padding: 14px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.025); }
-    .workflow-step strong { display: block; color: var(--cyan); font-size: .82rem; margin-bottom: 7px; }
-    .workflow-step span { display: block; color: var(--muted); font-size: .78rem; line-height: 1.5; }
-    .platform-box { padding: 16px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.025); }
-    .platform-box + .platform-box { margin-top: 10px; }
-    .platform-box strong { display: block; margin-bottom: 5px; font-size: .88rem; }
-    .platform-box p { margin: 0; color: var(--muted); font-size: .82rem; }
-    .project-outcome { margin-top: 18px; padding: 15px 17px; border-left: 2px solid var(--cyan); border-radius: 0 12px 12px 0; background: rgba(101,226,229,.055); color: #d9e6f7; font-size: .87rem; }
-    .project-mark {
-      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px;
-      color: var(--cyan); background: rgba(101,226,229,.09); border: 1px solid rgba(101,226,229,.18);
-      font-weight: 800; margin-bottom: 20px;
-    }
-    .project-card p { color: var(--muted); font-size: .9rem; margin: 0; }
-    .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .cert {
-      display: flex; gap: 13px; align-items: flex-start; padding: 17px;
-      border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.025);
-    }
-    .cert-icon { color: var(--cyan); font-size: 1.1rem; line-height: 1.4; }
-    .cert strong { display: block; font-size: .91rem; }
-    .cert span { display: block; color: var(--muted); font-size: .8rem; margin-top: 3px; }
-    .contact-panel {
-      display: flex; align-items: center; justify-content: space-between; gap: 28px;
-      padding: 36px; border-radius: 26px; border: 1px solid rgba(85,184,255,.24);
-      background: linear-gradient(120deg, rgba(23,65,99,.55), rgba(17,31,50,.8));
-    }
-    .contact-panel h2 { margin-top: 0; }
-    .contact-panel p { color: var(--muted); margin-bottom: 0; max-width: 600px; }
-    footer { padding: 26px 0 34px; color: var(--muted); font-size: .82rem; border-top: 1px solid var(--line); }
-    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .fade-up { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 850px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
-      .hero { padding: 75px 0; }
-      .hero-card { max-width: 520px; }
-      .skills-grid, .projects-grid { grid-template-columns: 1fr 1fr; }
-      .project-details { grid-template-columns: 1fr; }
-      .workflow { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 650px) {
-      .wrap { width: min(100% - 32px, var(--max)); }
-      .nav { min-height: 68px; }
-      .menu-toggle { display: inline-flex; }
-      .nav-links {
-        display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px;
-        background: #0b1727; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 15px;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 5px 0; }
-      h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
-      section { padding: 58px 0; }
-      .about-grid, .skills-grid, .projects-grid, .cert-list { grid-template-columns: 1fr; }
-      .project-feature { grid-column: auto; }
-      .workflow { grid-template-columns: 1fr; }
-      .quick-facts { grid-template-columns: 1fr 1fr; }
-      .contact-panel { align-items: flex-start; flex-direction: column; padding: 26px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-      .fade-up { opacity: 1; transform: none; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fb" id="theme-color">
+  <meta name="description" content="Ashish Kumar — choose the Cloud Engineer or DevOps Engineer portfolio. AWS, Azure, OCI, VMware, infrastructure, automation and CI/CD.">
+  <title>Ashish Kumar | Cloud & DevOps Portfolio</title>
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a463b9ef5cca4a9b9ae7f655a1fec569"}'></script>
   <!-- End Cloudflare Web Analytics -->
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f4f7fb; --panel:rgba(255,255,255,.82); --text:#142238;
+      --muted:#52647b; --blue:#1769aa; --cyan:#087e83;
+      --line:rgba(40,70,105,.18); --shadow:0 24px 70px rgba(38,65,95,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:
+      radial-gradient(ellipse at 12% 10%,rgba(255,196,104,.26),transparent 34rem),
+      radial-gradient(ellipse at 88% 88%,rgba(77,177,190,.15),transparent 31rem),var(--bg);
+      color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+      display:flex;flex-direction:column;transition:background .5s,color .5s}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1080px,calc(100% - 40px));margin:auto}
+    header{padding:28px 0}
+    .brand{font-weight:850;letter-spacing:-.04em;color:var(--blue);font-size:1.1rem}
+    .brand span{color:var(--text)}
+    main{flex:1;display:grid;align-items:center;padding:50px 0 80px}
+    .eyebrow{color:var(--cyan);font-size:.76rem;font-weight:750;letter-spacing:.17em;text-transform:uppercase}
+    h1{font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.02;letter-spacing:-.065em;margin:18px 0}
+    .accent{color:var(--blue)}
+    .intro{color:var(--muted);font-size:1.08rem;max-width:650px;line-height:1.75}
+    .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:46px}
+    .choice{position:relative;display:block;padding:30px;border:1px solid var(--line);border-radius:24px;
+      background:var(--panel);box-shadow:var(--shadow);backdrop-filter:blur(12px);
+      transition:transform .2s,border-color .2s,background .5s;min-height:255px}
+    .choice:hover,.choice:focus-visible{transform:translateY(-5px);border-color:var(--blue);outline:none}
+    .icon{font-size:1.8rem}
+    .choice h2{font-size:1.65rem;margin:18px 0 8px;letter-spacing:-.03em}
+    .choice p{color:var(--muted);line-height:1.65;margin:0;max-width:420px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+    .tag{font-size:.75rem;color:var(--blue);border:1px solid var(--line);background:rgba(60,130,190,.07);border-radius:99px;padding:6px 10px}
+    .open{display:inline-block;color:var(--cyan);font-weight:750;margin-top:24px}
+    .note{color:var(--muted);font-size:.82rem;margin-top:28px}
+    footer{padding:24px 0;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line)}
+    .theme-status{float:right;font-size:.78rem;color:var(--muted);padding-top:2px}
+    body.night{color-scheme:dark;--bg:#07111f;--panel:rgba(16,31,51,.88);--text:#edf5ff;
+      --muted:#9aadc4;--blue:#62bdff;--cyan:#65e4dc;--line:rgba(164,196,230,.17);
+      --shadow:0 24px 70px rgba(0,0,0,.25);
+      background:radial-gradient(ellipse at 15% 10%,rgba(38,130,190,.22),transparent 34rem),
+      radial-gradient(ellipse at 85% 85%,rgba(33,177,172,.13),transparent 30rem),var(--bg)}
+    @media(max-width:700px){.choices{grid-template-columns:1fr}.choice{min-height:0}main{padding:35px 0 55px}.theme-status{float:none;display:block;margin-top:8px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap nav">
-      <a class="brand" href="#home" aria-label="Ashish Kumar home">A<span>K.</span></a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certifications</a>
-        <a class="nav-cta" href="#contact">Contact</a>
-      </nav>
-    </div>
+  <header class="wrap">
+    <a class="brand" href="./">AK<span>.</span></a>
+    <span class="theme-status" id="theme-status" aria-live="polite">Adapting to local daylight</span>
   </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="wrap hero-grid">
-        <div class="fade-up">
-          <div class="eyebrow">Cloud Engineer · AWS · Infrastructure</div>
-          <h1>Ashish<br>Kumar<span class="accent">.</span></h1>
-          <p class="hero-copy">
-            Building and operating reliable cloud infrastructure. I work across AWS, cloud operations,
-            automation, storage, and disaster recovery—with a focus on resilient systems and practical solutions.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#experience">Explore my experience <span aria-hidden="true">↗</span></a>
-            <a class="btn btn-secondary" href="#contact">Get in touch</a>
-          </div>
-        </div>
-        <aside class="hero-card fade-up" aria-label="Professional overview">
-          <div class="card-label">Professional snapshot</div>
-          <div class="stat">5</div>
-          <p>Years of cloud and infrastructure experience</p>
-          <div class="mini-divider"></div>
-          <div class="focus-list">
-            <div class="focus-item"><span class="dot"></span> AWS cloud infrastructure and operations</div>
-            <div class="focus-item"><span class="dot"></span> Disaster recovery and replication</div>
-            <div class="focus-item"><span class="dot"></span> Automation, backup and patching</div>
-            <div class="focus-item"><span class="dot"></span> AWS · OCI · VMware environments</div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="wrap">
-        <div class="section-head fade-up">
-          <div class="section-kicker">About me</div>
-          <h2>Cloud operations with a <span class="accent">reliability-first</span> mindset.</h2>
-          <p>I help manage, protect, and improve infrastructure so that services remain dependable and recoverable.</p>
-        </div>
-        <div class="about-grid">
-          <div class="panel fade-up">
-            <p>
-              I am a Cloud Engineer with 5 years of experience supporting cloud infrastructure and data protection.
-              My work spans AWS, Oracle Cloud Infrastructure (OCI), Microsoft Azure, and VMware, along with
-              operational automation, backup, storage, and disaster recovery.
-              I enjoy troubleshooting complex infrastructure issues and turning repeatable tasks into safer,
-              more consistent processes.
-            </p>
-          </div>
-          <div class="panel quick-facts fade-up">
-            <div class="fact"><strong>5</strong><span>Years of experience</span></div>
-            <div class="fact"><strong>AWS</strong><span>Cloud infrastructure</span></div>
-            <div class="fact"><strong>OCI</strong><span>Cloud infrastructure</span></div>
-            <div class="fact"><strong>Azure · VMware</strong><span>Enterprise infrastructure</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <div class="wrap">
-        <div class="section-head fade-up">
-          <div class="section-kicker">Technical skills</div>
-          <h2>Tools I work <span class="accent">with.</span></h2>
-          <p>A practical mix of cloud platforms, infrastructure services, automation, and operations.</p>
-        </div>
-        <div class="skills-grid">
-          <article class="panel skill-card fade-up">
-            <h3>Cloud platforms</h3>
-            <p>Cloud infrastructure deployment, administration, monitoring, and operational support.</p>
-            <div class="tags"><span class="tag">AWS</span><span class="tag">Oracle Cloud (OCI)</span><span class="tag">Azure</span><span class="tag">GCP</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>AWS services</h3>
-            <p>Compute, networking, storage, databases, serverless automation, messaging, and operations.</p>
-            <div class="tags"><span class="tag">EC2</span><span class="tag">S3</span><span class="tag">VPC</span><span class="tag">Route 53</span><span class="tag">RDS</span><span class="tag">EFS</span><span class="tag">FSx</span><span class="tag">Lambda</span><span class="tag">SQS</span><span class="tag">EventBridge</span><span class="tag">CloudWatch</span><span class="tag">Systems Manager</span><span class="tag">IAM</span><span class="tag">AWS Backup</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>Microsoft Azure</h3>
-            <p>Core cloud building blocks across compute, networking, storage, identity, monitoring, and protection.</p>
-            <div class="tags"><span class="tag">Azure Virtual Machines</span><span class="tag">Virtual Network</span><span class="tag">Network Security Groups</span><span class="tag">Storage Accounts</span><span class="tag">Blob Storage</span><span class="tag">Microsoft Entra ID</span><span class="tag">Azure Monitor</span><span class="tag">Key Vault</span><span class="tag">Azure Backup</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>OCI & VMware</h3>
-            <p>Cloud compute, virtual networking, storage, serverless functions, messaging, and virtualization.</p>
-            <div class="tags"><span class="tag">OCI Compute</span><span class="tag">VCN</span><span class="tag">Block Volume</span><span class="tag">Object Storage</span><span class="tag">OCI Functions</span><span class="tag">OCI Queue</span><span class="tag">vSphere</span><span class="tag">ESXi</span><span class="tag">vCenter</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>Resilience & data protection</h3>
-            <p>Backup operations, snapshot replication, retention, recovery testing, and virtualization support.</p>
-            <div class="tags"><span class="tag">AWS Backup</span><span class="tag">EBS Snapshots</span><span class="tag">Block Volume Backups</span><span class="tag">Zerto</span><span class="tag">VMware</span><span class="tag">DR testing</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>Log collection & security monitoring</h3>
-            <p>Collecting infrastructure and security-service logs and forwarding them to centralized SIEM platforms.</p>
-            <div class="tags"><span class="tag">WAF Logs</span><span class="tag">S3 Logs</span><span class="tag">CloudWatch Logs</span><span class="tag">Lambda Logs</span><span class="tag">SIEM Integration</span><span class="tag">ELK Stack</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>Automation & scripting</h3>
-            <p>Automating infrastructure operations and repeatable administration tasks.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">PowerShell</span><span class="tag">Bash</span><span class="tag">Ansible</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>Infrastructure as code</h3>
-            <p>Working with infrastructure definitions and deployment automation.</p>
-            <div class="tags"><span class="tag">Terraform</span><span class="tag">CloudFormation</span></div>
-          </article>
-          <article class="panel skill-card fade-up">
-            <h3>Security & operations</h3>
-            <p>Identity, security posture, configuration visibility, patching, and monitoring.</p>
-            <div class="tags"><span class="tag">Security Hub</span><span class="tag">GuardDuty</span><span class="tag">AWS Config</span><span class="tag">Active Directory</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="wrap">
-        <div class="section-head fade-up">
-          <div class="section-kicker">Experience</div>
-          <h2>Where I have <span class="accent">made an impact.</span></h2>
-          <p>Infrastructure engineering across cloud operations, storage, and disaster recovery.</p>
-        </div>
-        <div class="timeline">
-          <article class="panel experience-card fade-up">
-            <div class="role">Engineer – Infrastructure Storage & Data Protection</div>
-            <h3>NaviSite · Part of Accenture</h3>
-            <div class="company">Cloud infrastructure, storage, and data protection</div>
-            <ul>
-              <li>Support disaster recovery testing and recovery operations across AWS, OCI, and VMware environments.</li>
-              <li>Manage replication activities and support Zerto upgrades and related DR operations.</li>
-              <li>Assist with infrastructure protection, backup operations, troubleshooting, and recovery readiness.</li>
-              <li>Coordinate with cloud and network teams to resolve dependencies during DR activities.</li>
-            </ul>
-          </article>
-          <article class="panel experience-card fade-up">
-            <div class="role">Associate Engineer / Cloud Engineer</div>
-            <h3>NCS Technologies India Pvt. Ltd.</h3>
-            <div class="company">Cloud infrastructure and operations</div>
-            <ul>
-              <li>Managed AWS cloud infrastructure and operations, supporting compute, networking, storage, and database services.</li>
-              <li>Worked with EC2, Route 53, S3, RDS, VPC, EFS, FSx, Service Catalog, and CloudWatch.</li>
-              <li>Supported IAM administration, Security Hub, GuardDuty, AWS Config, and Active Directory role assignments.</li>
-              <li>Automated backup and patching activities to improve operational consistency.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="wrap">
-        <div class="section-head fade-up">
-          <div class="section-kicker">Selected work</div>
-          <h2>Focused on dependable <span class="accent">infrastructure.</span></h2>
-          <p>Examples of the infrastructure work and operational capabilities I have been involved in.</p>
-        </div>
-        <div class="projects-grid">
-          <article class="panel project-card project-feature fade-up">
-            <div class="project-mark">01</div>
-            <h3>Automated Snapshot Replication &amp; DR Retention</h3>
-            <p class="project-intro">Designed and implemented an event-driven disaster recovery automation workflow to create volume snapshots at 30-minute intervals, transfer them to a designated DR region, and enforce a controlled retention policy. The solution was implemented across AWS and Oracle Cloud Infrastructure (OCI), using each platform’s native serverless and messaging services.</p>
-            <div class="project-details">
-              <div>
-                <h4 class="project-subhead">Workflow architecture</h4>
-                <div class="workflow" aria-label="Snapshot disaster recovery workflow">
-                  <div class="workflow-step"><strong>1 · Schedule</strong><span>A scheduled trigger initiates snapshot creation every 30 minutes.</span></div>
-                  <div class="workflow-step"><strong>2 · Capture</strong><span>A serverless function creates snapshots for the configured source volumes.</span></div>
-                  <div class="workflow-step"><strong>3 · Queue &amp; copy</strong><span>Snapshot tasks enter a queue; a worker function processes them and copies snapshots to the DR region.</span></div>
-                  <div class="workflow-step"><strong>4 · Retain</strong><span>Retention logic keeps the latest two DR copies per volume and removes older copies.</span></div>
-                </div>
-              </div>
-              <div>
-                <h4 class="project-subhead">Cloud services used</h4>
-                <div class="platform-box"><strong>AWS implementation</strong><p>Amazon EventBridge Scheduler · AWS Lambda · Amazon SQS · EBS Snapshots · Cross-Region Copy</p></div>
-                <div class="platform-box"><strong>OCI implementation</strong><p>OCI scheduling trigger · OCI Functions · OCI Queue · Block Volume Backups · Cross-Region Copy</p></div>
-              </div>
-            </div>
-            <div class="project-outcome"><strong>Operational value:</strong> Reduced manual effort in recurring DR snapshot operations, separated snapshot creation from asynchronous copy processing, and applied a consistent two-copy-per-volume retention policy in the DR region. Queue-based processing also provides a clear point to monitor task status and handle unsuccessful copy operations.</div>
-            <div class="tags"><span class="tag">AWS</span><span class="tag">OCI</span><span class="tag">Lambda</span><span class="tag">OCI Functions</span><span class="tag">EventBridge Scheduler</span><span class="tag">SQS / OCI Queue</span><span class="tag">Snapshot Automation</span><span class="tag">Disaster Recovery</span></div>
-          </article>
-          <article class="panel project-card project-feature fade-up">
-            <div class="project-mark">02</div>
-            <h3>Centralized Cloud Log Collection &amp; SIEM Integration</h3>
-            <p class="project-intro">Developed an automation script at NCS Technologies to collect logs from multiple AWS security and infrastructure services and deliver them to a centralized Security Information and Event Management (SIEM) platform. The collection covered Web Application Firewall (WAF) activity, S3 bucket logs, CloudWatch logs, and AWS Lambda logs, helping bring operational and security telemetry together for centralized analysis.</p>
-            <div class="project-details">
-              <div>
-                <h4 class="project-subhead">Collection workflow</h4>
-                <div class="workflow" aria-label="Cloud log collection workflow">
-                  <div class="workflow-step"><strong>1 · Identify sources</strong><span>Gather log data from WAF, S3, CloudWatch, and Lambda services.</span></div>
-                  <div class="workflow-step"><strong>2 · Collect</strong><span>Use a custom automation script to retrieve logs from the configured sources.</span></div>
-                  <div class="workflow-step"><strong>3 · Transfer</strong><span>Move the collected log data through the integration workflow to the SIEM platform.</span></div>
-                  <div class="workflow-step"><strong>4 · Centralize</strong><span>Make the service logs available in one place for security and operational analysis.</span></div>
-                </div>
-              </div>
-              <div>
-                <h4 class="project-subhead">Log sources &amp; integration</h4>
-                <div class="platform-box"><strong>AWS log sources</strong><p>Web Application Firewall (WAF) logs · S3 bucket logs · Amazon CloudWatch Logs · AWS Lambda logs</p></div>
-                <div class="platform-box"><strong>Integration</strong><p>Custom Python/script-based log collection · SIEM ingestion</p></div>
-              </div>
-            </div>
-            <div class="project-outcome"><strong>Operational value:</strong> Reduced the effort involved in collecting logs from separate AWS services and enabled centralized visibility of security and infrastructure events through the SIEM platform.</div>
-            <div class="tags"><span class="tag">AWS WAF</span><span class="tag">Amazon S3</span><span class="tag">CloudWatch Logs</span><span class="tag">AWS Lambda</span><span class="tag">Python</span><span class="tag">Log Automation</span><span class="tag">SIEM</span></div>
-          </article>
-          <article class="panel project-card fade-up">
-            <div class="project-mark">03</div>
-            <h3>Cloud infrastructure operations</h3>
-            <p>Administration and operational support across AWS, Oracle Cloud Infrastructure (OCI), Microsoft Azure, and VMware environments, covering compute, networking, storage, monitoring, security, and automation.</p>
-            <div class="tags"><span class="tag">AWS</span><span class="tag">OCI</span><span class="tag">Azure</span><span class="tag">VMware</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="certifications">
-      <div class="wrap">
-        <div class="section-head fade-up">
-          <div class="section-kicker">Certifications</div>
-          <h2>Continuous <span class="accent">learning.</span></h2>
-          <p>Cloud and security credentials.</p>
-        </div>
-        <div class="cert-list">
-          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>AWS Certified Solutions Architect – Associate</strong><span>Amazon Web Services</span></div></div>
-          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>Microsoft Certified: Azure Administrator (AZ-104)</strong><span>Microsoft Azure</span></div></div>
-          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>Azure Fundamentals (AZ-900)</strong><span>Microsoft Azure</span></div></div>
-          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>Google Cloud Certified Professional Cloud DevOps Engineer</strong><span>Google Cloud</span></div></div>
-          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>Oracle Cloud Infrastructure 2025 Architect Associate</strong><span>Oracle Cloud Infrastructure</span></div></div>
-          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>Oracle Cloud Infrastructure 2025 DevOps Professional</strong><span>Oracle Cloud Infrastructure</span></div></div>
-          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>Google Cloud Certified Associate Cloud Engineer</strong><span>Google Cloud</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="contact-panel fade-up">
-          <div>
-            <div class="section-kicker">Contact</div>
-            <h2>Let's build something <span class="accent">reliable.</span></h2>
-            <p>Interested in cloud infrastructure, AWS operations, automation, or disaster recovery? Connect with me on GitHub.</p>
-          </div>
-          <a class="btn btn-primary" href="https://github.com/Strikeransh" target="_blank" rel="noopener noreferrer">Visit my GitHub <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <span>© <span id="year"></span> Ashish Kumar. Built with HTML, CSS & JavaScript.</span>
-      <a href="#home">Back to top ↑</a>
+  <main><div class="wrap">
+    <div class="eyebrow">Cloud · DevOps · Infrastructure · Automation</div>
+    <h1>Ashish Kumar<span class="accent">.</span></h1>
+    <p class="intro">Explore my professional work through two focused portfolios. Choose the area most relevant to what you want to see.</p>
+    <div class="choices">
+      <a class="choice" href="./cloudops/" aria-label="Open Cloud Engineer portfolio">
+        <div class="icon" aria-hidden="true">☁</div>
+        <h2>Cloud Engineer</h2>
+        <p>Cloud infrastructure, AWS, Azure, OCI, VMware, storage, backup, disaster recovery, and multi-cloud operations.</p>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">OCI</span><span class="tag">VMware</span><span class="tag">DR & Backup</span></div>
+        <span class="open">Explore Cloud portfolio ↗</span>
+      </a>
+      <a class="choice" href="./devops/" aria-label="Open DevOps Engineer portfolio">
+        <div class="icon" aria-hidden="true">⚙</div>
+        <h2>DevOps Engineer</h2>
+        <p>Infrastructure as code, CI/CD, cloud SDK automation, configuration management, scripting, and container workflows.</p>
+        <div class="tags"><span class="tag">Terraform</span><span class="tag">CI/CD</span><span class="tag">Python</span><span class="tag">Ansible</span><span class="tag">Containers</span></div>
+        <span class="open">Explore DevOps portfolio ↗</span>
+      </a>
     </div>
-  </footer>
-
+    <p class="note">Select a portfolio to continue. Each section has its own projects, skills, and experience highlights.</p>
+  </div></main>
+  <footer><div class="wrap">© 2026 Ashish Kumar · Hosted with GitHub Pages</div></footer>
   <script>
-    const menuButton = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    // Use the visitor's optional browser location to calculate local solar time.
+    // If location is unavailable or denied, use the visitor's local clock as a fallback.
+    (function () {
+      const status = document.getElementById('theme-status');
+      const meta = document.getElementById('theme-color');
 
-    menuButton.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-      menuButton.textContent = isOpen ? 'Close' : 'Menu';
-    });
+      function setTheme(isDay, label) {
+        document.body.classList.toggle('night', !isDay);
+        meta.setAttribute('content', isDay ? '#f4f7fb' : '#07111f');
+        status.textContent = label;
+      }
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.textContent = 'Menu';
-      });
-    });
+      function solarIsDay(lat, lon, date) {
+        const rad = Math.PI / 180;
+        const day = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+          Date.UTC(date.getFullYear(), 0, 0)) / 86400000);
+        const gamma = 2 * Math.PI / 365 * (day - 1);
+        const eqtime = 229.18 * (0.000075 + 0.001868 * Math.cos(gamma) -
+          0.032077 * Math.sin(gamma) - 0.014615 * Math.cos(2 * gamma) -
+          0.040849 * Math.sin(2 * gamma));
+        const decl = 0.006918 - 0.399912 * Math.cos(gamma) +
+          0.070257 * Math.sin(gamma) - 0.006758 * Math.cos(2 * gamma) +
+          0.000907 * Math.sin(2 * gamma) - 0.002697 * Math.cos(3 * gamma) +
+          0.00148 * Math.sin(3 * gamma);
+        const minutes = date.getHours() * 60 + date.getMinutes() + date.getSeconds() / 60;
+        const solarMinutes = (minutes + eqtime + 4 * lon) % 1440;
+        const hourAngle = (solarMinutes / 4 - 180) * rad;
+        const cosZenith = Math.sin(lat * rad) * Math.sin(decl) +
+          Math.cos(lat * rad) * Math.cos(decl) * Math.cos(hourAngle);
+        return cosZenith > Math.cos(90.833 * rad);
+      }
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+      function fallback() {
+        const h = new Date().getHours();
+        setTheme(h >= 6 && h < 18, 'Using your local clock');
+      }
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+      function updateFromCoordinates(lat, lon) {
+        const now = new Date();
+        setTheme(solarIsDay(lat, lon, now), 'Theme follows local sunrise and sunset');
+      }
 
-    document.querySelectorAll('.fade-up').forEach(element => observer.observe(element));
+      fallback();
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          p => updateFromCoordinates(p.coords.latitude, p.coords.longitude),
+          () => { status.textContent = 'Using your local clock'; },
+          { enableHighAccuracy: false, timeout: 7000, maximumAge: 3600000 }
+        );
+      }
+      setInterval(() => {
+        // Re-evaluate using local clock fallback; solar location is refreshed on reload.
+        if (status.textContent === 'Using your local clock') fallback();
+      }, 60000);
+    })();
   </script>
 </body>
 </html>
