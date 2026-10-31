@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08111f">
+  <meta name="description" content="Ashish Kumar — Cloud Engineer specializing in AWS infrastructure, cloud operations, automation, and disaster recovery.">
+  <title>Ashish Kumar | Cloud Engineer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08111f;
+      --bg-soft: #0d192a;
+      --panel: rgba(17, 31, 50, .78);
+      --panel-solid: #111f32;
+      --text: #edf4ff;
+      --muted: #9aabc2;
+      --blue: #55b8ff;
+      --cyan: #65e2e5;
+      --line: rgba(157, 190, 225, .16);
+      --shadow: 0 22px 65px rgba(0, 0, 0, .28);
+      --radius: 22px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 82% 8%, rgba(31, 116, 183, .18), transparent 34rem),
+        radial-gradient(ellipse at 8% 42%, rgba(23, 159, 171, .09), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(8, 17, 31, .82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .nav {
+      min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { color: var(--blue); font-weight: 800; letter-spacing: -.04em; font-size: 1.12rem; }
+    .brand span { color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 26px; }
+    .nav-links a { color: var(--muted); font-size: .88rem; transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--blue); }
+    .nav-cta {
+      border: 1px solid rgba(85,184,255,.45); color: var(--blue) !important;
+      padding: 9px 15px; border-radius: 999px;
+    }
+    .menu-toggle {
+      display: none; border: 1px solid var(--line); color: var(--text);
+      background: var(--panel-solid); border-radius: 10px; padding: 8px 11px; cursor: pointer;
+    }
+    .hero { padding: 108px 0 92px; min-height: 590px; display: grid; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 58px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; color: var(--cyan);
+      font-size: .78rem; font-weight: 750; letter-spacing: .16em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 25px; height: 1px; background: var(--cyan); }
+    h1 { font-size: clamp(3.1rem, 7vw, 5.8rem); line-height: .99; letter-spacing: -.065em; margin: 22px 0; }
+    h1 .accent, .accent { color: var(--blue); }
+    .hero-copy { color: var(--muted); max-width: 650px; font-size: clamp(1rem, 1.8vw, 1.15rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 12px 19px; border-radius: 999px; font-weight: 700; font-size: .92rem;
+      border: 1px solid transparent; transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #041321; background: linear-gradient(110deg, var(--blue), var(--cyan)); }
+    .btn-secondary { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.025); }
+    .hero-card {
+      position: relative; padding: 28px; border: 1px solid var(--line); border-radius: 28px;
+      background: linear-gradient(145deg, rgba(20, 42, 67, .92), rgba(10, 22, 37, .88));
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .hero-card::before {
+      content: ""; position: absolute; width: 210px; height: 210px; border-radius: 50%;
+      right: -85px; top: -105px; background: rgba(85,184,255,.14); filter: blur(2px);
+    }
+    .card-label { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .13em; }
+    .stat { font-size: 3.2rem; font-weight: 850; letter-spacing: -.07em; line-height: 1.1; margin: 12px 0 4px; }
+    .stat span { color: var(--blue); }
+    .hero-card p { color: var(--muted); margin: 0; font-size: .92rem; }
+    .mini-divider { height: 1px; background: var(--line); margin: 24px 0; }
+    .focus-list { display: grid; gap: 13px; }
+    .focus-item { display: flex; align-items: center; gap: 12px; color: #d9e6f7; font-size: .9rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 16px rgba(101,226,229,.65); }
+    section { padding: 78px 0; }
+    .section-head { max-width: 690px; margin-bottom: 34px; }
+    .section-kicker { color: var(--cyan); font-size: .75rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -.05em; margin: 10px 0 14px; }
+    .section-head p, .muted { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .panel {
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 27px; box-shadow: 0 12px 38px rgba(0,0,0,.12);
+    }
+    .panel p { color: var(--muted); margin: 0; }
+    .quick-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .fact { padding: 17px; border-radius: 15px; background: rgba(255,255,255,.035); border: 1px solid var(--line); }
+    .fact strong { display: block; color: var(--blue); font-size: 1.35rem; letter-spacing: -.04em; }
+    .fact span { color: var(--muted); font-size: .82rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .skill-card h3, .experience-card h3, .project-card h3 { margin: 0 0 12px; font-size: 1.08rem; }
+    .skill-card p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
+    .tag {
+      border: 1px solid rgba(85,184,255,.2); color: #c8e7ff; background: rgba(85,184,255,.07);
+      border-radius: 999px; padding: 6px 10px; font-size: .77rem;
+    }
+    .timeline { display: grid; gap: 18px; }
+    .experience-card { position: relative; padding-left: 31px; }
+    .experience-card::before {
+      content: ""; position: absolute; left: 0; top: 7px; bottom: 7px; width: 2px;
+      background: linear-gradient(var(--blue), rgba(101,226,229,.15));
+    }
+    .experience-card::after {
+      content: ""; position: absolute; left: -5px; top: 7px; width: 12px; height: 12px;
+      border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 5px rgba(101,226,229,.1);
+    }
+    .role { color: var(--blue); font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
+    .company { color: var(--muted); font-size: .87rem; margin-bottom: 13px; }
+    .experience-card ul { margin: 0; padding-left: 19px; color: var(--muted); }
+    .experience-card li { padding: 3px 0; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .project-mark {
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px;
+      color: var(--cyan); background: rgba(101,226,229,.09); border: 1px solid rgba(101,226,229,.18);
+      font-weight: 800; margin-bottom: 20px;
+    }
+    .project-card p { color: var(--muted); font-size: .9rem; margin: 0; }
+    .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cert {
+      display: flex; gap: 13px; align-items: flex-start; padding: 17px;
+      border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.025);
+    }
+    .cert-icon { color: var(--cyan); font-size: 1.1rem; line-height: 1.4; }
+    .cert strong { display: block; font-size: .91rem; }
+    .cert span { display: block; color: var(--muted); font-size: .8rem; margin-top: 3px; }
+    .contact-panel {
+      display: flex; align-items: center; justify-content: space-between; gap: 28px;
+      padding: 36px; border-radius: 26px; border: 1px solid rgba(85,184,255,.24);
+      background: linear-gradient(120deg, rgba(23,65,99,.55), rgba(17,31,50,.8));
+    }
+    .contact-panel h2 { margin-top: 0; }
+    .contact-panel p { color: var(--muted); margin-bottom: 0; max-width: 600px; }
+    footer { padding: 26px 0 34px; color: var(--muted); font-size: .82rem; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .fade-up { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero { padding: 75px 0; }
+      .hero-card { max-width: 520px; }
+      .skills-grid, .projects-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 650px) {
+      .wrap { width: min(100% - 32px, var(--max)); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links {
+        display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px;
+        background: #0b1727; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 15px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 5px 0; }
+      h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+      section { padding: 58px 0; }
+      .about-grid, .skills-grid, .projects-grid, .cert-list { grid-template-columns: 1fr; }
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+      .contact-panel { align-items: flex-start; flex-direction: column; padding: 26px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .fade-up { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Ashish Kumar home">A<span>K.</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a class="nav-cta" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="fade-up">
+          <div class="eyebrow">Cloud Engineer · AWS · Infrastructure</div>
+          <h1>Ashish<br>Kumar<span class="accent">.</span></h1>
+          <p class="hero-copy">
+            Building and operating reliable cloud infrastructure. I work across AWS, cloud operations,
+            automation, storage, and disaster recovery—with a focus on resilient systems and practical solutions.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#experience">Explore my experience <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <aside class="hero-card fade-up" aria-label="Professional overview">
+          <div class="card-label">Professional snapshot</div>
+          <div class="stat">4<span>+</span></div>
+          <p>Years of cloud and infrastructure experience</p>
+          <div class="mini-divider"></div>
+          <div class="focus-list">
+            <div class="focus-item"><span class="dot"></span> AWS infrastructure across 30+ accounts</div>
+            <div class="focus-item"><span class="dot"></span> Disaster recovery and replication</div>
+            <div class="focus-item"><span class="dot"></span> Automation, backup and patching</div>
+            <div class="focus-item"><span class="dot"></span> AWS · OCI · VMware environments</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head fade-up">
+          <div class="section-kicker">About me</div>
+          <h2>Cloud operations with a <span class="accent">reliability-first</span> mindset.</h2>
+          <p>I help manage, protect, and improve infrastructure so that services remain dependable and recoverable.</p>
+        </div>
+        <div class="about-grid">
+          <div class="panel fade-up">
+            <p>
+              I am a Cloud Engineer with 4+ years of experience supporting cloud infrastructure and data protection.
+              My work includes managing AWS services across multiple accounts, implementing operational automation,
+              supporting disaster recovery exercises, and working with storage and virtualization technologies.
+              I enjoy troubleshooting complex infrastructure issues and turning repeatable tasks into safer,
+              more consistent processes.
+            </p>
+          </div>
+          <div class="panel quick-facts fade-up">
+            <div class="fact"><strong>30+</strong><span>AWS accounts supported</span></div>
+            <div class="fact"><strong>4+</strong><span>Years of experience</span></div>
+            <div class="fact"><strong>AWS</strong><span>Cloud infrastructure</span></div>
+            <div class="fact"><strong>DR</strong><span>Resilience and recovery</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head fade-up">
+          <div class="section-kicker">Technical skills</div>
+          <h2>Tools I work <span class="accent">with.</span></h2>
+          <p>A practical mix of cloud platforms, infrastructure services, automation, and operations.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="panel skill-card fade-up">
+            <h3>Cloud platforms</h3>
+            <p>Cloud infrastructure deployment, administration, monitoring, and operational support.</p>
+            <div class="tags"><span class="tag">AWS</span><span class="tag">Oracle Cloud (OCI)</span><span class="tag">Azure</span><span class="tag">GCP</span></div>
+          </article>
+          <article class="panel skill-card fade-up">
+            <h3>AWS services</h3>
+            <p>Core compute, networking, storage, database, security, and monitoring services.</p>
+            <div class="tags"><span class="tag">EC2</span><span class="tag">S3</span><span class="tag">VPC</span><span class="tag">Route 53</span><span class="tag">RDS</span><span class="tag">EFS / FSx</span><span class="tag">CloudWatch</span><span class="tag">IAM</span></div>
+          </article>
+          <article class="panel skill-card fade-up">
+            <h3>Resilience & data protection</h3>
+            <p>Backup operations, replication management, recovery testing, and virtualization support.</p>
+            <div class="tags"><span class="tag">AWS Backup</span><span class="tag">Zerto</span><span class="tag">VMware</span><span class="tag">DR testing</span></div>
+          </article>
+          <article class="panel skill-card fade-up">
+            <h3>Automation & scripting</h3>
+            <p>Automating infrastructure operations and repeatable administration tasks.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">PowerShell</span><span class="tag">Bash</span><span class="tag">Ansible</span></div>
+          </article>
+          <article class="panel skill-card fade-up">
+            <h3>Infrastructure as code</h3>
+            <p>Working with infrastructure definitions and deployment automation.</p>
+            <div class="tags"><span class="tag">Terraform</span><span class="tag">CloudFormation</span></div>
+          </article>
+          <article class="panel skill-card fade-up">
+            <h3>Security & operations</h3>
+            <p>Identity, security posture, configuration visibility, patching, and monitoring.</p>
+            <div class="tags"><span class="tag">Security Hub</span><span class="tag">GuardDuty</span><span class="tag">AWS Config</span><span class="tag">Active Directory</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head fade-up">
+          <div class="section-kicker">Experience</div>
+          <h2>Where I have <span class="accent">made an impact.</span></h2>
+          <p>Infrastructure engineering across cloud operations, storage, and disaster recovery.</p>
+        </div>
+        <div class="timeline">
+          <article class="panel experience-card fade-up">
+            <div class="role">Engineer – Infrastructure Storage & Data Protection</div>
+            <h3>NaviSite · Part of Accenture</h3>
+            <div class="company">Cloud infrastructure, storage, and data protection</div>
+            <ul>
+              <li>Support disaster recovery testing and recovery operations across AWS, OCI, and VMware environments.</li>
+              <li>Manage replication activities and support Zerto upgrades and related DR operations.</li>
+              <li>Assist with infrastructure protection, backup operations, troubleshooting, and recovery readiness.</li>
+              <li>Coordinate with cloud and network teams to resolve dependencies during DR activities.</li>
+            </ul>
+          </article>
+          <article class="panel experience-card fade-up">
+            <div class="role">Associate Engineer / Cloud Engineer</div>
+            <h3>NCS Technologies India Pvt. Ltd.</h3>
+            <div class="company">Cloud infrastructure and operations</div>
+            <ul>
+              <li>Managed AWS infrastructure across 30+ accounts, supporting compute, networking, storage, and database services.</li>
+              <li>Worked with EC2, Route 53, S3, RDS, VPC, EFS, FSx, Service Catalog, and CloudWatch.</li>
+              <li>Supported IAM administration, Security Hub, GuardDuty, AWS Config, and Active Directory role assignments.</li>
+              <li>Automated backup and patching activities to improve operational consistency.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head fade-up">
+          <div class="section-kicker">Selected work</div>
+          <h2>Focused on dependable <span class="accent">infrastructure.</span></h2>
+          <p>Examples of the infrastructure work and operational capabilities I have been involved in.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="panel project-card fade-up">
+            <div class="project-mark">01</div>
+            <h3>Multi-account AWS operations</h3>
+            <p>Administration and operational support for AWS environments across 30+ accounts, covering compute, networking, storage, monitoring, and security services.</p>
+            <div class="tags"><span class="tag">AWS</span><span class="tag">CloudWatch</span><span class="tag">IAM</span></div>
+          </article>
+          <article class="panel project-card fade-up">
+            <div class="project-mark">02</div>
+            <h3>Disaster recovery exercises</h3>
+            <p>Support for DR testing across cloud and virtualization environments, including replication coordination, connectivity validation, and recovery troubleshooting.</p>
+            <div class="tags"><span class="tag">AWS</span><span class="tag">OCI</span><span class="tag">VMware</span><span class="tag">Zerto</span></div>
+          </article>
+          <article class="panel project-card fade-up">
+            <div class="project-mark">03</div>
+            <h3>Operations automation</h3>
+            <p>Automation of recurring infrastructure tasks such as backup and patching workflows, helping make operations more repeatable and manageable.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">PowerShell</span><span class="tag">AWS</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="wrap">
+        <div class="section-head fade-up">
+          <div class="section-kicker">Certifications</div>
+          <h2>Continuous <span class="accent">learning.</span></h2>
+          <p>Cloud and security credentials.</p>
+        </div>
+        <div class="cert-list">
+          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>OCI 2025 Certified Foundations Associate</strong><span>Oracle Cloud Infrastructure</span></div></div>
+          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>OCI 2025 DevOps Professional</strong><span>Oracle Cloud Infrastructure</span></div></div>
+          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>OCI 2025 Architect Associate</strong><span>Oracle Cloud Infrastructure</span></div></div>
+          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>Professional Cloud DevOps Engineer</strong><span>Google Cloud</span></div></div>
+          <div class="cert fade-up"><div class="cert-icon">✦</div><div><strong>AZ-500</strong><span>Microsoft Azure Security Technologies</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-panel fade-up">
+          <div>
+            <div class="section-kicker">Contact</div>
+            <h2>Let's build something <span class="accent">reliable.</span></h2>
+            <p>Interested in cloud infrastructure, AWS operations, automation, or disaster recovery? Connect with me on GitHub.</p>
+          </div>
+          <a class="btn btn-primary" href="https://github.com/Strikeransh" target="_blank" rel="noopener noreferrer">Visit my GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> Ashish Kumar. Built with HTML, CSS & JavaScript.</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.textContent = isOpen ? 'Close' : 'Menu';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.textContent = 'Menu';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>
